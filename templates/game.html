@@ -7,7 +7,8 @@
   <header class="px-header">
     <div class="px-header-left">
       <div class="px-game-title">修仙之路</div>
-      <div class="px-location">{{ player.location if player.location is defined else 'Thanh Vân Sơn' }}</div>
+      <div class="px-header-realm">{{ realm.name_vn }}</div>
+      <div class="px-header-info">{{ root.name_vn }} · {{ race.name_vn }}</div>
     </div>
     <div class="px-header-center">
       <div class="px-cult-labels">
@@ -19,16 +20,20 @@
           <div class="px-cult-shimmer"></div>
         </div>
       </div>
-      <div class="px-cult-nums">{{ exp_current }} / {{ exp_required }} Tu Vi</div>
+      <div class="px-cult-nums">{{ exp_current }} / {{ exp_required }} exp</div>
     </div>
     <div class="px-header-right">
       <div class="px-stat-col">
-        <span class="px-stat-label">CHIẾN LỰC</span>
-        <span class="px-stat-val">{{ player.combat_power if player.combat_power is defined else '1,240' }}</span>
-      </div>
-      <div class="px-stat-col">
         <span class="px-stat-label">NĂM</span>
         <span class="px-stat-val">{{ time.year }}</span>
+      </div>
+      <div class="px-stat-col">
+        <span class="px-stat-label">THÁNG</span>
+        <span class="px-stat-val">{{ time.month }}</span>
+      </div>
+      <div class="px-stat-col">
+        <span class="px-stat-label">PHÁI</span>
+        <span class="px-stat-val">{{ sect_name }}</span>
       </div>
     </div>
     <div class="px-header-actions">
@@ -58,6 +63,10 @@
         <span class="px-tab-label">{{ label }}</span>
       </a>
     {% endfor %}
+    <a class="px-tab-btn {{ 'active' if tab == 'save' else '' }}" href="{{ url_for('game', tab='save') }}" data-tab="save">
+      <span class="px-tab-icon">💾</span>
+      <span class="px-tab-label">Lưu</span>
+    </a>
   </nav>
 
   <!-- MAIN CONTENT -->
